@@ -1,7 +1,7 @@
 streamlit==1.55.0
 tensorflow==2.15.0
 keras==2.15.0
-ultralytics
+ultralytics==8.2.0
 pillow
 numpy
 googletrans==4.0.0-rc1
