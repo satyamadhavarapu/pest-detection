@@ -518,7 +518,7 @@ def main():
     with col_in:
         st.markdown('<div class="card">', unsafe_allow_html=True)
         st.markdown('<div class="card-title">📸 Input Image</div>', unsafe_allow_html=True)
-        mode   st.radio(
+        mode = st.radio(
     "Mode",
     ["📤 Upload Image","📷 Live Camera"],
     label_visibility="collapsed"
