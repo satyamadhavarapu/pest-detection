@@ -87,18 +87,20 @@ KERAS_CLASS_NAMES = [
 # Your YOLOv8 model's actual class names (from debug: {0:'Ants', 1:'Bees', ...})
 # Mapped to our PEST_DB keys
 YOLO_TO_DB = {
-    "ants":        "unknown",       # no ants in PEST_DB — treat as unknown
-    "bees":        "honeybee",
-    "beetles":     "ladybug",       # closest match
-    "caterpillars":"armyworm",
-    "earthworms":  "unknown",
-    "earwigs":     "unknown",
-    "grasshoppers":"grasshopper",
-    "moths":       "armyworm",      # moths → armyworm (similar damage)
-    "slugs":       "unknown",
-    "snails":      "unknown",
-    "wasps":       "unknown",
-    "weevils":     "stem_borer",    # weevils bore into stems
+    "ant": "unknown",
+    "ants": "unknown",
+    "bee": "honeybee",
+    "bees": "honeybee",
+    "beetle": "ladybug",
+    "beetles": "ladybug",
+    "caterpillar": "armyworm",
+    "caterpillars": "armyworm",
+    "grasshopper": "grasshopper",
+    "grasshoppers": "grasshopper",
+    "moth": "armyworm",
+    "moths": "armyworm",
+    "weevil": "stem_borer",
+    "weevils": "stem_borer",
 }
 
 # ══════════════════════════════════════════════════════════════════════════════
