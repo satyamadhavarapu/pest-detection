@@ -1,7 +1,7 @@
-streamlit
-tensorflow
+streamlit==1.55.0
+tensorflow==2.15.0
+keras==2.15.0
 ultralytics
 pillow
-googletrans==4.0.0rc1
-reportlab
 numpy
+googletrans==4.0.0-rc1
