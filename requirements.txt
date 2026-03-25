@@ -1,0 +1,7 @@
+streamlit
+tensorflow
+ultralytics
+pillow
+googletrans==4.0.0rc1
+reportlab
+numpy
