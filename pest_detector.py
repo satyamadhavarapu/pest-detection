@@ -87,148 +87,228 @@ KERAS_CLASS_NAMES = [
 # Your YOLOv8 model's actual class names (from debug: {0:'Ants', 1:'Bees', ...})
 # Mapped to our PEST_DB keys
 YOLO_TO_DB = {
-    "ant": "unknown",
-    "ants": "unknown",
-    "bee": "honeybee",
-    "bees": "honeybee",
-    "beetle": "ladybug",
-    "beetles": "ladybug",
-    "caterpillar": "armyworm",
-    "caterpillars": "armyworm",
-    "grasshopper": "grasshopper",
-    "grasshoppers": "grasshopper",
-    "moth": "armyworm",
-    "moths": "armyworm",
-    "weevil": "stem_borer",
-    "weevils": "stem_borer",
+    "ants":        "unknown",       # no ants in PEST_DB — treat as unknown
+    "bees":        "honeybee",
+    "beetles":     "ladybug",       # closest match
+    "caterpillars":"armyworm",
+    "earthworms":  "unknown",
+    "earwigs":     "unknown",
+    "grasshoppers":"grasshopper",
+    "moths":       "armyworm",      # moths → armyworm (similar damage)
+    "slugs":       "unknown",
+    "snails":      "unknown",
+    "wasps":       "unknown",
+    "weevils":     "stem_borer",    # weevils bore into stems
 }
 
 # ══════════════════════════════════════════════════════════════════════════════
 # PEST DATABASE
 # ══════════════════════════════════════════════════════════════════════════════
 PEST_DB = {
-    "aphid": {
-        "type":"BAD","common_name":"Aphid","emoji":"🦗",
-        "description":"Small sap-sucking insects that weaken plants and spread viral diseases.",
-        "precautions":["Inspect crops regularly, especially undersides of leaves.",
-                       "Avoid over-fertilising with nitrogen — encourages aphid growth.",
-                       "Use reflective mulches to deter flying aphids.",
-                       "Quarantine infested plants immediately."],
-        "preventions":["Introduce ladybugs, lacewings, parasitic wasps.",
-                       "Spray neem oil solution (2-3 tsp per litre water).",
-                       "Apply pyrethrin-based insecticide for heavy infestations.",
-                       "Plant companion plants: marigold, basil, catnip."],
-        "pesticide":"Neem oil, Imidacloprid, Pyrethrin","severity":"Medium",
+    "ants": {
+        "type": "BAD",
+        "common_name": "Ants",
+        "emoji": "🐜",
+        "description": "Ants disturb roots and protect sap-sucking pests like aphids, increasing crop damage.",
+        "precautions": [
+            "Avoid excess sugar-based residues in fields",
+            "Inspect soil and root zones regularly",
+            "Destroy visible nests early"
+        ],
+        "preventions": [
+            "Use neem oil spray around plant base",
+            "Apply diatomaceous earth near colonies",
+            "Encourage natural predators like birds"
+        ],
+        "pesticide": "Chlorpyrifos, Boric acid bait",
+        "severity": "Medium"
     },
-    "armyworm": {
-        "type":"BAD","common_name":"Armyworm / Caterpillar","emoji":"🪱",
-        "description":"Caterpillars that destroy foliage, stems and fruits in large numbers.",
-        "precautions":["Monitor fields at dawn/dusk when armyworms are most active.",
-                       "Check leaf undersides for egg masses and destroy them.",
-                       "Keep field borders mowed."],
-        "preventions":["Apply Bacillus thuringiensis (Bt) spray.",
-                       "Use pheromone traps to reduce adult moth populations.",
-                       "Spray Spinosad or Chlorpyrifos for heavy infestations.",
-                       "Practice crop rotation to break pest life cycle."],
-        "pesticide":"Spinosad, Bt, Chlorpyrifos","severity":"High",
-    },
-    "whitefly": {
-        "type":"BAD","common_name":"Whitefly","emoji":"🦋",
-        "description":"Tiny white flying insects that suck plant sap and transmit viruses.",
-        "precautions":["Use yellow sticky traps to monitor population.",
-                       "Remove and destroy heavily infested leaves."],
-        "preventions":["Apply neem oil spray every 7 days.",
-                       "Use reflective silver mulch to deter adults.",
-                       "Introduce Encarsia formosa parasitic wasp."],
-        "pesticide":"Neem oil, Imidacloprid, Spiromesifen","severity":"High",
-    },
-    "stem_borer": {
-        "type":"BAD","common_name":"Stem Borer / Weevil","emoji":"🐛",
-        "description":"Larvae / weevils that bore into stems, cutting off nutrient flow.",
-        "precautions":["Check for holes at stem base and wilting central shoots.",
-                       "Remove and burn infested plant parts immediately."],
-        "preventions":["Apply carbofuran granules in the leaf whorl.",
-                       "Use Trichogramma parasitoids for biocontrol.",
-                       "Deep summer ploughing destroys pupae."],
-        "pesticide":"Carbofuran, Chlorantraniliprole","severity":"Very High",
-    },
-    "leaf_miner": {
-        "type":"BAD","common_name":"Leaf Miner","emoji":"🍃",
-        "description":"Larvae tunnelling between leaf surfaces creating winding mines.",
-        "precautions":["Remove mined leaves promptly.",
-                       "Monitor with yellow sticky traps."],
-        "preventions":["Apply spinosad targeting adult flies.",
-                       "Introduce Diglyphus isaea parasitic wasps.",
-                       "Neem oil as systemic repellent."],
-        "pesticide":"Spinosad, Abamectin, Cyromazine","severity":"Medium",
-    },
-    "thrips": {
-        "type":"BAD","common_name":"Thrips","emoji":"🦟",
-        "description":"Tiny insects causing silvery leaf streaks and spreading tospoviruses.",
-        "precautions":["Use blue sticky traps.",
-                       "Inspect flowers and growing tips closely."],
-        "preventions":["Spray spinosad or neem oil every 5-7 days.",
-                       "Introduce Amblyseius cucumeris predatory mites.",
-                       "Remove weeds acting as alternate hosts."],
-        "pesticide":"Spinosad, Fipronil, Abamectin","severity":"High",
-    },
-    "grasshopper": {
-        "type":"BAD","common_name":"Grasshopper","emoji":"🦗",
-        "description":"Chewing insects that devour leaves and stems, causing complete crop loss.",
-        "precautions":["Monitor field edges at dawn.",
-                       "Till soil in autumn to destroy egg pods."],
-        "preventions":["Apply Nosema locustae biological control.",
-                       "Use carbaryl or malathion bait formulations."],
-        "pesticide":"Malathion, Carbaryl, Diflubenzuron","severity":"Very High",
-    },
-    "mite": {
-        "type":"BAD","common_name":"Spider Mite","emoji":"🕷️",
-        "description":"Tiny arachnids causing stippling, yellowing and webbing on leaves.",
-        "precautions":["Check leaf undersides with magnifying glass.",
-                       "Avoid water stress — mites thrive on stressed plants."],
-        "preventions":["Spray abamectin or bifenazate miticide.",
-                       "Release Phytoseiulus persimilis predatory mites."],
-        "pesticide":"Abamectin, Bifenazate, Spiromesifen","severity":"Medium",
-    },
-    "ladybug": {
-        "type":"GOOD","common_name":"Ladybug / Beetle","emoji":"🐞",
-        "description":"Beneficial predator that eats aphids, mites and other crop pests.",
-        "benefit":"One ladybug consumes up to 5,000 aphids in its lifetime — essential biocontrol.",
-        "how_to_encourage":["Plant dill, fennel, marigold and yarrow near crops.",
-                             "Avoid broad-spectrum pesticides.",
-                             "Provide leaf-pile overwintering habitat."],
-    },
-    "honeybee": {
-        "type":"GOOD","common_name":"Honeybee / Bee","emoji":"🐝",
-        "description":"Critical pollinator that fertilises crops and boosts yield.",
-        "benefit":"Increases crop yield by 20-30%. Pollinates over 80% of flowering plants.",
-        "how_to_encourage":["Plant diverse flowering plants at field borders.",
-                             "Spray pesticides at dawn/dusk, not during bloom.",
-                             "Place beehives near crop fields."],
-    },
-    "dragonfly": {
-        "type":"GOOD","common_name":"Dragonfly","emoji":"🪲",
-        "description":"Aerial predator that hunts mosquitoes and small pest insects mid-flight.",
-        "benefit":"98% hunting success rate — eats hundreds of pest insects daily.",
-        "how_to_encourage":["Maintain ponds or irrigation channels near fields.",
-                             "Reduce broad-spectrum pesticide use."],
-    },
-    "spider": {
-        "type":"GOOD","common_name":"Beneficial Spider","emoji":"🕸️",
-        "description":"Predatory arachnid that feeds on leafhoppers, caterpillars and pests.",
-        "benefit":"Spiders globally consume more insects than birds do.",
-        "how_to_encourage":["Keep diverse plant cover at field margins.",
-                             "Minimise soil disturbance to protect ground spiders."],
-    },
-    "unknown": {
-        "type":"UNKNOWN","common_name":"Unknown Organism","emoji":"❓",
-        "description":"Could not confidently identify. Please consult an agricultural expert.",
-        "precautions":["Consult your local agricultural extension officer."],
-        "preventions":["Send a sample to a certified plant pathology lab."],
-        "pesticide":"Consult expert","severity":"Unknown",
-    },
-}
 
+    "bees": {
+        "type": "GOOD",
+        "common_name": "Bees",
+        "emoji": "🐝",
+        "description": "Essential pollinators that significantly improve crop yield and biodiversity.",
+        "benefit": "Increase yield up to 30% and improve fruit quality.",
+        "how_to_encourage": [
+            "Plant flowering crops like sunflower and mustard",
+            "Avoid pesticide spraying during daytime",
+            "Provide water sources near fields"
+        ]
+    },
+
+    "beetles": {
+        "type": "BAD",
+        "common_name": "Beetles",
+        "emoji": "🐞",
+        "description": "Feed on leaves, stems, and roots causing severe plant damage.",
+        "precautions": [
+            "Monitor leaves for holes regularly",
+            "Remove infected plants immediately"
+        ],
+        "preventions": [
+            "Use neem oil or garlic spray",
+            "Introduce natural predators like birds"
+        ],
+        "pesticide": "Imidacloprid, Carbaryl",
+        "severity": "High"
+    },
+
+    "caterpillars": {
+        "type": "BAD",
+        "common_name": "Caterpillars",
+        "emoji": "🐛",
+        "description": "Larvae stage of moths that rapidly eat leaves and reduce crop productivity.",
+        "precautions": [
+            "Inspect leaves daily for larvae",
+            "Remove eggs manually"
+        ],
+        "preventions": [
+            "Use Bacillus thuringiensis (Bt)",
+            "Install pheromone traps"
+        ],
+        "pesticide": "Spinosad, Chlorpyrifos",
+        "severity": "High"
+    },
+
+    "earthworms": {
+        "type": "GOOD",
+        "common_name": "Earthworms",
+        "emoji": "🪱",
+        "description": "Improve soil aeration and fertility naturally.",
+        "benefit": "Enhance soil nutrients and water retention.",
+        "how_to_encourage": [
+            "Add organic compost",
+            "Avoid chemical overuse",
+            "Maintain soil moisture"
+        ]
+    },
+
+    "earwigs": {
+        "type": "BAD",
+        "common_name": "Earwigs",
+        "emoji": "🪲",
+        "description": "Feed on leaves and fruits, causing irregular damage.",
+        "precautions": [
+            "Inspect plants at night",
+            "Remove hiding debris"
+        ],
+        "preventions": [
+            "Use oil traps",
+            "Apply neem oil spray"
+        ],
+        "pesticide": "Carbaryl",
+        "severity": "Medium"
+    },
+
+    "grasshoppers": {
+        "type": "BAD",
+        "common_name": "Grasshoppers",
+        "emoji": "🦗",
+        "description": "Highly destructive insects that consume entire crops quickly.",
+        "precautions": [
+            "Monitor field edges regularly",
+            "Destroy egg pods in soil"
+        ],
+        "preventions": [
+            "Use biological control (Nosema locustae)",
+            "Maintain clean field borders"
+        ],
+        "pesticide": "Malathion, Carbaryl",
+        "severity": "Very High"
+    },
+
+    "moths": {
+        "type": "BAD",
+        "common_name": "Moths",
+        "emoji": "🦋",
+        "description": "Lay eggs that hatch into destructive larvae feeding on crops.",
+        "precautions": [
+            "Check leaves for eggs",
+            "Remove larvae early"
+        ],
+        "preventions": [
+            "Install light traps",
+            "Use pheromone traps"
+        ],
+        "pesticide": "Spinosad, Pyrethrin",
+        "severity": "High"
+    },
+
+    "slugs": {
+        "type": "BAD",
+        "common_name": "Slugs",
+        "emoji": "🐌",
+        "description": "Feed on seedlings and leaves, especially in moist conditions.",
+        "precautions": [
+            "Avoid overwatering",
+            "Remove debris from soil"
+        ],
+        "preventions": [
+            "Use salt barriers or ash",
+            "Install beer traps"
+        ],
+        "pesticide": "Metaldehyde",
+        "severity": "Medium"
+    },
+
+    "snails": {
+        "type": "BAD",
+        "common_name": "Snails",
+        "emoji": "🐌",
+        "description": "Cause damage similar to slugs by feeding on leaves.",
+        "precautions": [
+            "Inspect during night",
+            "Remove manually"
+        ],
+        "preventions": [
+            "Use copper barriers",
+            "Maintain dry soil conditions"
+        ],
+        "pesticide": "Metaldehyde",
+        "severity": "Medium"
+    },
+
+    "wasps": {
+        "type": "GOOD",
+        "common_name": "Wasps",
+        "emoji": "🐝",
+        "description": "Act as biological pest controllers by feeding on harmful insects.",
+        "benefit": "Reduce pest population naturally.",
+        "how_to_encourage": [
+            "Plant nectar-rich flowers",
+            "Avoid excessive pesticide use"
+        ]
+    },
+
+    "weevils": {
+        "type": "BAD",
+        "common_name": "Weevils",
+        "emoji": "🐛",
+        "description": "Bore into stems and grains causing major yield loss.",
+        "precautions": [
+            "Inspect grains and stems",
+            "Remove infected plants"
+        ],
+        "preventions": [
+            "Use pheromone traps",
+            "Practice crop rotation"
+        ],
+        "pesticide": "Chlorantraniliprole, Carbofuran",
+        "severity": "Very High"
+    },
+
+    "unknown": {
+        "type": "UNKNOWN",
+        "common_name": "Unknown",
+        "emoji": "❓",
+        "description": "Unable to identify pest. Please consult an expert.",
+        "precautions": ["Consult agricultural officer"],
+        "preventions": ["Send sample to lab"],
+        "pesticide": "Consult expert",
+        "severity": "Unknown"
+    }
+}
 def lookup_pest(label: str) -> dict:
     n = str(label).lower().strip().replace(" ","_").replace("-","_")
     return PEST_DB.get(n, PEST_DB["unknown"])
@@ -247,21 +327,23 @@ LANGUAGES = {
 }
 
 @st.cache_resource(show_spinner=False)
+@st.cache_resource(show_spinner=False)
 def _get_translator():
     try:
-        from googletrans import Translator
-        return Translator()
+        from deep_translator import GoogleTranslator
+        return GoogleTranslator
     except Exception:
         return None
-
 def tx(text: str, lang: str) -> str:
     if lang == "en" or not text:
         return text
-    t = _get_translator()
-    if not t:
+
+    TranslatorClass = _get_translator()
+    if not TranslatorClass:
         return text
+
     try:
-        return t.translate(str(text), dest=lang).text
+        return TranslatorClass(source='auto', target=lang).translate(text)
     except Exception:
         return text
 
@@ -499,7 +581,7 @@ def main():
     with st.sidebar:
         st.markdown("### ⚙️ Settings")
         model_dir = st.text_input("📁 Model Folder",
-                                   value="models")
+                                   value=r"D:\pest proj\pest proj")
         st.markdown("---")
         st.markdown("### 🤖 Model")
         MODEL_CHOICES = ["CNN","MobileNetV2","EfficientNetB0","YOLOv8","🔥 Ensemble (All)"]
@@ -520,26 +602,20 @@ def main():
     with col_in:
         st.markdown('<div class="card">', unsafe_allow_html=True)
         st.markdown('<div class="card-title">📸 Input Image</div>', unsafe_allow_html=True)
-        mode = st.radio(
-    "Mode",
-    ["📤 Upload Image","📷 Live Camera"],
-    label_visibility="collapsed"
-)
+        mode = st.radio("", ["📤 Upload Image","📷 Live Camera"],
+                        horizontal=True, label_visibility="collapsed")
         img = None
         if mode == "📤 Upload Image":
-            up = st.file_uploader(
-    "Upload",
-    type=["jpg","jpeg","png","webp","bmp"],
-    label_visibility="collapsed"
-  )
+            up = st.file_uploader("", type=["jpg","jpeg","png","webp","bmp"],
+                                   label_visibility="collapsed")
             if up:
                 img = Image.open(up)
-                st.image(img, width="stretch", caption="Uploaded image")
+                st.image(img, use_column_width=True, caption="Uploaded image")
         else:
             cam = st.camera_input("", label_visibility="collapsed")
             if cam:
                 img = Image.open(cam)
-                st.image(img, width="stretch", caption="Captured image")
+                st.image(img, use_column_width=True, caption="Captured image")
         if img:
             st.caption(f"{img.size[0]}×{img.size[1]}px")
         st.markdown('</div>', unsafe_allow_html=True)
