@@ -518,19 +518,26 @@ def main():
     with col_in:
         st.markdown('<div class="card">', unsafe_allow_html=True)
         st.markdown('<div class="card-title">📸 Input Image</div>', unsafe_allow_html=True)
-        mode = mode = st.radio(
-        "Select Input Mode",  ["📤 Upload Image", "📷 Live Camera"],label_visibility="collapsed" )
+        mode   st.radio(
+    "Mode",
+    ["📤 Upload Image","📷 Live Camera"],
+    label_visibility="collapsed"
+)
         img = None
         if mode == "📤 Upload Image":
-            up = st.file_uploader( "Upload Image",type=["jpg","jpeg","png","webp","bmp"],label_visibility="collapsed")
+            up = st.file_uploader(
+    "Upload",
+    type=["jpg","jpeg","png","webp","bmp"],
+    label_visibility="collapsed"
+  )
             if up:
                 img = Image.open(up)
-                st.image(img, use_column_width=True, caption="Uploaded image")
+                st.image(img, width="stretch", caption="Uploaded image")
         else:
             cam = st.camera_input("", label_visibility="collapsed")
             if cam:
                 img = Image.open(cam)
-                st.image(img, use_column_width=True, caption="Captured image")
+                st.image(img, width="stretch", caption="Captured image")
         if img:
             st.caption(f"{img.size[0]}×{img.size[1]}px")
         st.markdown('</div>', unsafe_allow_html=True)
