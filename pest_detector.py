@@ -497,7 +497,7 @@ def main():
     with st.sidebar:
         st.markdown("### ⚙️ Settings")
         model_dir = st.text_input("📁 Model Folder",
-                                   value=r"C:\Users\JAYA SOORYA\Downloads\pest proj")
+                                   value=r"D:\pest proj\pest proj")
         st.markdown("---")
         st.markdown("### 🤖 Model")
         MODEL_CHOICES = ["CNN","MobileNetV2","EfficientNetB0","YOLOv8","🔥 Ensemble (All)"]
