@@ -497,7 +497,7 @@ def main():
     with st.sidebar:
         st.markdown("### ⚙️ Settings")
         model_dir = st.text_input("📁 Model Folder",
-                                   value=r"D:\pest proj\pest proj")
+                                   value=r"https://github.com/satyamadhavarapu/pest-detection/tree/main")
         st.markdown("---")
         st.markdown("### 🤖 Model")
         MODEL_CHOICES = ["CNN","MobileNetV2","EfficientNetB0","YOLOv8","🔥 Ensemble (All)"]
