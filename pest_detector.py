@@ -76,7 +76,7 @@ KERAS_CLASS_NAMES = [
     "caterpillars",  # 3
     "earthworms",  # 4
     "earwigs",      # 5
-    "grasshopper", # 6
+    "grasshoppers", # 6
     "moths",        # 7
     "slugs",     # 8
     "snails",    # 9
@@ -93,7 +93,7 @@ YOLO_TO_DB = {
     "caterpillars":"armyworm",
     "earthworms":  "unknown",
     "earwigs":     "unknown",
-    "grasshoppers":"grasshopper",
+    "grasshoppers":"grasshoppers",
     "moths":       "armyworm",      # moths → armyworm (similar damage)
     "slugs":       "unknown",
     "snails":      "unknown",
