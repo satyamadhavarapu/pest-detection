@@ -11,15 +11,6 @@ from datetime import datetime
 from PIL import Image
 import streamlit as st
 
-st.markdown("""
-<link rel="manifest" href="/manifest.json">
-<script>
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/service-worker.js');
-}
-</script>
-""", unsafe_allow_html=True)
-
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
 os.environ["TF_ENABLE_ONEDNN_OPTS"] = "0"
 warnings.filterwarnings("ignore")
